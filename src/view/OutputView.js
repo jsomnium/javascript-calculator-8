@@ -1,5 +1,10 @@
+import { Console } from '@woowacourse/mission-utils';
+import { Message } from '../constant';
+
 class OutputView {
-    // 출력은 여기서 구현됩니다.
+  print(result) {
+    Console.print(Message.OUTPUT_RESULT + result);
+  }
 }
 
 export default OutputView;
