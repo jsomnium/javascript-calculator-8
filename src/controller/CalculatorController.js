@@ -15,6 +15,7 @@ class CalculatorController {
 
   async start() {
     const inputString = await this.#numberInputter.input();
+    this.#calculator.add(inputString);
   }
 }
 
