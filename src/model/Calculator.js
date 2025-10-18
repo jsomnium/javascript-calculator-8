@@ -13,6 +13,8 @@
 
     // 4. 종료 후 최종 합 숫자를 반환한다.
 
+import { NEGATIVE_NUMBER_ERROR } from '../constant';
+
 class Calculator {
   add(inputString) {
     if (inputString === "") {
@@ -39,20 +41,20 @@ class Calculator {
       const delimiterRegex = new RegExp(delimiters.map(d => d.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|'));
       const numberStrings = numbersString.split(delimiterRegex);
       
+      // 숫자가 아닌 값이 들어있을 시, 예외 발생하는 부분 추가하기
       return numberStrings.map(numStr => parseInt(numStr, 10));
   }
 
   #calculateSum(numbers) {
-    let sum = 0;
-      for (const number of numbers) {
-        if (number < 0) {
-          // 음수인 경우 예외 발생
-          }
-        sum += number;
-        }
-      return sum;
-  }
+    // 음수가 있다면 예외 발생
+    const negativeNumbers = numbers.filter(num => num < 0);
+    if (negativeNumbers.length > 0) {
+      throw new Error(NEGATIVE_NUMBER_ERROR, negativeNumbers.join(', '));
+    }
 
+    // 합 계산
+    return numbers.reduce((total, currentNum) => total + currentNum, 0);
+  }
 }
 
 export default Calculator;
