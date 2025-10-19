@@ -4,10 +4,10 @@ class Calculator {
   add(inputString) {
     if (inputString === "") {
       return 0;
-      }
+    }
 
     const numbers = this.#extractNumbers(inputString);
-      return this.#calculateSum(numbers);
+    return this.#calculateSum(numbers);
     }
 
   #extractNumbers(inputString) {
