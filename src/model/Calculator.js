@@ -26,7 +26,19 @@ class Calculator {
     const delimiterRegex = new RegExp(delimiters.map(d => d.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|'));
     const numberStrings = numbersString.split(delimiterRegex);
       
-    // 숫자가 아닌 값이 들어있을 시, 예외 발생하는 부분 추가하기
+    // 예외 발생 조건 검사
+    if (numberStrings.length === 0 ||
+      numberStrings.some(numStr => numStr.trim() === '') ||
+      numberStrings.some(numStr => isNaN(numStr))
+    ) {
+      throw new Error('[ERROR] 유효하지 않은 숫자가 입력되었습니다.');
+    }
+
+    // 공백 문자가 포함된 경우 예외 발생
+    if (numberStrings.some(numStr => numStr.includes(' ')) && !delimiters.includes(' ')) {
+      throw new Error('[ERROR] 유효하지 않은 문자가 입력되었습니다.');
+    }
+    
     return numberStrings.map(numStr => parseInt(numStr, 10));
   }
 
