@@ -20,6 +20,7 @@ class CalculatorController {
       this.#outputView.print(result);
     } catch (error) {
       this.#outputView.printError(error.message);
+      throw error instanceof Error ? error : new Error(String(error));
     }
   }
 }
