@@ -5,6 +5,10 @@ class OutputView {
   print(result) {
     Console.print(Message.OUTPUT_PROMPT + result);
   }
+
+  printError(errorMessage) {
+    Console.print(errorMessage);
+  }
 }
 
 export default OutputView;

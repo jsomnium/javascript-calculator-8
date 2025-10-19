@@ -38,7 +38,7 @@ class Calculator {
     if (numberStrings.some(numStr => numStr.includes(' ')) && !delimiters.includes(' ')) {
       throw new Error('[ERROR] 유효하지 않은 문자가 입력되었습니다.');
     }
-    
+
     return numberStrings.map(numStr => parseInt(numStr, 10));
   }
 
@@ -50,7 +50,7 @@ class Calculator {
     // 음수가 있다면 예외 발생
     const negativeNumbers = numbers.filter(num => num < 0);
     if (negativeNumbers.length > 0) {
-      throw new Error(Message.NEGATIVE_NUMBER_ERROR, negativeNumbers.join(', '));
+      throw new Error(Message.NEGATIVE_NUMBER_ERROR);
     }
 
     return numbers.reduce((acc, current) => acc + current, 0);
